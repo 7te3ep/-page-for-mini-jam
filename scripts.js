@@ -4,7 +4,6 @@
 let canva = document.getElementById('canvas')
 
 import {c, ctx} from "./modules/canvas.js";
-import {Background} from "./modules/background.js";
 import {Environment} from "./modules/environment.js";
 import { } from "./modules/game.js";
 import {Player} from "./modules/player.js";
@@ -17,7 +16,6 @@ import {Storage} from "./modules/storage.js";
 
 let gameFrame = 1
 
-const background = new Background();
 let player = new Player
 const tree = new Tree
 const environment = new Environment
