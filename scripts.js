@@ -80,7 +80,7 @@ function handlePlayer(){
 
 
 function gameLoop(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     tree.update()
     tree.draw()
     storage.draw()
