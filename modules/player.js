@@ -145,7 +145,7 @@ class Player {
         }
     }
 
-    checkCollision(pineConeArray,rootArray) {
+    checkCollision(pineConeArray,rootArray,birdArray) {
         for(let i=0; i<pineConeArray.length; i++){
             if (this.x<pineConeArray[i].x+pineConeArray[i].width && this.x+this.width >pineConeArray[i].x &&
                 this.y<pineConeArray[i].y+pineConeArray[i].height &&this.y+this.height >pineConeArray[i].y) {
@@ -157,6 +157,13 @@ class Player {
             if (this.x<rootArray[i].x+rootArray[i].width && this.x+this.width >rootArray[i].x &&
                 this.y<rootArray[i].y+rootArray[i].height &&this.y+this.height >rootArray[i].y && rootArray[i].y <= c.height -150) {
                     rootArray.splice(i, 1)
+                    this.alive = false
+            }
+        }
+        for(let i=0; i<birdArray.length; i++){
+            if (this.x<birdArray[i].x+birdArray[i].width && this.x+this.width >birdArray[i].x &&
+                this.y<birdArray[i].y+birdArray[i].height &&this.y+this.height >birdArray[i].y) {
+                    birdArray.splice(i, 1)
                     this.alive = false
             }
         }

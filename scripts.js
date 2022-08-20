@@ -10,6 +10,7 @@ import {Player} from "./modules/player.js";
 import {Tree} from "./modules/tree.js";
 import {PineCone} from "./modules/pinecone.js";
 import {Root} from "./modules/root.js";
+import {Bird} from "./modules/bird.js";
 import {Storage} from "./modules/storage.js";
 
 //animation loop
@@ -23,6 +24,7 @@ const storage = new Storage
 
 let pineConeArray = []
 let rootArray = []
+let birdArray = []
 
 function handlePineCone() {
     if ((gameFrame % 40) == 0) {
@@ -70,9 +72,23 @@ function handleRoot() {
     }
 }
 
+function handleBird(){
+    if ((gameFrame % 800) == 0) {
+        birdArray.push(new Bird())
+    }
+    for (let i = 0; i<birdArray.length; i++) {
+        birdArray[i].update(birdArray[i])
+        birdArray[i].draw()
+        if (birdArray[i].y <= 0){
+            birdArray.splice(i,1)
+            i--
+        }
+    }
+}
+
 function handlePlayer(){
     player.update(tree, storage)
-    player.checkCollision(pineConeArray,rootArray)
+    player.checkCollision(pineConeArray,rootArray,birdArray)
     player.getWood(tree,gameFrame)
     player.depositeWood(storage,gameFrame)
     player.draw()
@@ -80,14 +96,15 @@ function handlePlayer(){
 
 
 function gameLoop(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height
-    tree.update()
-    tree.draw()
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     storage.draw()
     storage.update()
     handlePineCone()
     handlePlayer()
     handleRoot()
+    tree.update()
+    tree.draw()
+    handleBird()
     environment.update()
     environment.draw()
     gameFrame ++
@@ -106,6 +123,7 @@ function menu(){
 }
 document.getElementById("playBtn").addEventListener("click", function(){
     rootArray = []
+    birdArray = []
     pineConeArray = []
     player = new Player(environment.height, gameFrame, tree.width)
     canva.style.display = 'block'
