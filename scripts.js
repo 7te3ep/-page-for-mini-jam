@@ -96,7 +96,7 @@ function handlePlayer(){
 
 
 function gameLoop(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     tree.update()
     tree.draw()
     storage.draw()
@@ -127,6 +127,7 @@ document.getElementById("playBtn").addEventListener("click", function(){
     rootArray = []
     birdArray = []
     pineConeArray = []
+    storage = new Storage
     player = new Player(environment.height, gameFrame, tree.width)
     canva.style.display = 'block'
     document.getElementById("playBtn").style.visibility = 'hidden'
